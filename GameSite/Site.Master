@@ -1,0 +1,135 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="GameSite.SiteMaster" %>
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head runat="server">
+    <meta charset="utf-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Game Shop</title>
+
+    <link href="Template/assets/css/bootstrap.css" rel="stylesheet" />
+
+    <link href="Template/assets/css/font-awesome.min.css" rel="stylesheet" />
+
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+
+    <link href="Template/assets/ItemSlider/css/main-style.css" rel="stylesheet" />
+
+    <link href="Template/assets/css/style.css" rel="stylesheet" />
+</head>
+<body>
+    <form runat="server">
+
+
+        <nav class="navbar navbar-default" role="navigation">
+            <div class="container-fluid">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="/Default.aspx"><strong>Game</strong> Shop</a>
+                </div>
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+
+                    <ul class="nav navbar-nav navbar-right">
+
+                        <li><a id="userLink" runat="server">
+                            <label id="lblUser" runat="server"></label>
+                        </a></li>
+                        <li><a id="registerLink" runat="server">
+                            <label id="lblRegister" runat="server"></label>
+                        </a></li>
+                         <li><a id="AdminPanel" runat="server">
+                            <label id="lblAdmin" runat="server"></label>
+                        </a></li>
+
+                    </ul>
+
+                </div>
+                <!-- /.navbar-collapse -->
+            </div>
+            <!-- /.container-fluid -->
+        </nav>
+        <div class="row">
+            <div class="col-md-3">
+                <div>
+                    <a href="/Games.aspx" class="list-group-item active">Oyunlar</a>
+
+                    <a href="/Companies.aspx" class="list-group-item active">Firmalar
+                    </a>
+                    <ul class="list-group">
+
+                        <asp:Repeater ID="rptCompanies" runat="server">
+                            <ItemTemplate>
+                                <a href="#" class="list-group-item"><%# Eval("Name")%>
+                     
+                                </a>
+                            </ItemTemplate>
+                        </asp:Repeater>
+                    </ul>
+                </div>
+                <div>
+                    <a href="/Categories.aspx" class="list-group-item active">Oyun Türleri
+                    </a>
+                    <ul class="list-group">
+
+                        <asp:Repeater ID="rptCategories" runat="server">
+                            <ItemTemplate>
+                                <li>
+                                    <a href="/Categories.aspx?Id=<%# Eval("Id")%>" class="list-group-item"><%# Eval("Name")%>
+                     
+                                </a>
+                                </li>
+                            </ItemTemplate>
+                        </asp:Repeater>
+                    </ul>
+                </div>
+
+
+            </div>
+
+
+
+
+            <div class="col-md-9">
+                <div class="container body-content">
+                    <asp:ContentPlaceHolder ID="MainContent" runat="server">
+                    </asp:ContentPlaceHolder>
+
+
+                </div>
+            </div>
+        </div>
+        <footer>
+            <p>&copy; <%: DateTime.Now.Year %> - My ASP.NET Application</p>
+        </footer>
+    </form>
+
+
+    <script>
+        $(function () {
+            $('a').each(function () {
+                if ($(this).prop('href') == window.location.href) {
+                    $(this).addClass('active'); $(this).parents('li').addClass('active');
+                }
+            });
+        });
+    </script>
+</body>
+
+
+
+
+
+</html>
